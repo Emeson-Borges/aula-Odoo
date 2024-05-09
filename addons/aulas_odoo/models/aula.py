@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import api, exceptions, fields, models
 
 
 class AulasOdoo(models.Model):
@@ -33,4 +33,34 @@ class AulasOdoo(models.Model):
         for aula in self:
             if aula.state != "done":
                 aula.write({"state": "done"})
+        return True
+
+    # @api.multi
+    def save_data(self):
+        for aula in self:
+            # Verifica se todos os campos obrigatórios estão preenchidos
+            if not (aula.nome_aula and aula.professor and aula.data_aula):
+                raise exceptions.ValidationError(
+                    "Por favor, preencha todos os campos obrigatórios."
+                )
+
+            if aula.id:  # Verifica se o registro já existe
+                aula.write(
+                    {  # Atualiza os campos do registro existente
+                        "descricao_aula": aula.descricao_aula,
+                        "minutos_aula": aula.minutos_aula,
+                        "professor": aula.professor,
+                        "data_aula": aula.data_aula,
+                    }
+                )
+            else:
+                self.env["aula.odoo"].create(
+                    {  # Cria um novo registro
+                        "nome_aula": aula.nome_aula,
+                        "descricao_aula": aula.descricao_aula,
+                        "minutos_aula": aula.minutos_aula,
+                        "professor": aula.professor,
+                        "data_aula": aula.data_aula,
+                    }
+                )
         return True

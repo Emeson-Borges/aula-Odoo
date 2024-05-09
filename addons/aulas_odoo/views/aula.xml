@@ -45,21 +45,18 @@
                         </page>
                     </notebook>
                     <!-- Dentro do Sheet coloca-se os campos do Modelo -->
-
-                    <header> 
-                        <button name="mark_as_lost" string="Marcar como Perdida" type="object" class="btn-primary"/>
-                        <button name="mark_as_done" string="Marcar como Feita" type="object" class="btn-primary"/>
-                        <!-- <field name="campo_status" widget="statusbar" readonly="1"/> -->
-                    </header>
                 </sheet>
-                <!-- <footer>
-                    <button name="mark_as_lost" string="Marcar como Perdida" type="object" class="btn-primary"/>
-                </footer> -->   
+                <header>
+                    <!-- link do CSS -->
+                     <link rel="stylesheet" href="/aulas_odoo/static/src/css/btn-style.css" />
+                    <button name="save_data" string="Salvar" type="object" class="btn-custom" />
+                    <button name="mark_as_lost" string="Marcar como Perdida" type="object" class="btn-custom" />
+                    <button name="mark_as_done" string="Marcar como Feita" type="object" class="btn-custom" />
+                </header>
             </form>
         </field>
-
-        
     </record>
+
     <record id="action_aula" model="ir.actions.act_window">
         <field name="res_model">aula.odoo</field>
         <field name="view_mode">tree,form,pivot</field>
