@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <record id="professor_tree" model="ir.ui.view">
+            <field name="name">cadastro.professor.tree</field>
+            <field name="model">cadastro.professor</field>
+            <field name="arch" type="xml">
+                <tree string="Cadastro de Professores">
+                    <field name="nome" />
+                    <field name="idade" />
+                    <field name="admissao" />
+                    <field name="email" />
+                    <field name="materia_lec" />
+                    <field name="titulacao" />
+                </tree>
+            </field>
+        </record>
+        <record id="cadastro_professor_form" model="ir.ui.view">
+            <field name="name">cadastro.professor.form</field>
+            <field name="model">cadastro.professor</field>
+            <field name="arch" type="xml">
+                <form string="Formulário para cadastro de professores">
+                    <sheet>
+                        <notebook>
+                            <page string="Dados básicos" name="dados_basicos">
+                                <group>
+                                    <field name="nome" />
+                                    <field name="idade" />
+                                    <field name="admissao" />
+                                    <field name="email" />
+                                </group>
+                            </page>
+                            <page string="Dados de Titulação" name="dados_titulacao">
+                                <group>
+                                    <field name="materia_lec" />
+                                    <field name="titulacao" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="action_cad_prof" model="ir.actions.act_window">
+            <field name="name">Cadastrar Professor</field>
+            <field name="res_model">cadastro.professor</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Cadastrar um professor
+                </p>
+            </field>
+        </record>
+        <!-- Top menu item -->
+    <menuitem id="cad_root" name="Cadastro" action="action_cad_prof" sequence="1" />
+    <menuitem id="menu_cad" name="Cadastro" sequence="2" />
+</odoo>

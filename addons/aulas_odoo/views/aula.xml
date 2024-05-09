@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- A conveção para nome de id é: view_nomedomodelo_tipodavista -->
+    <record id="aula_tree" model="ir.ui.view">
+        <field name="name">aula.odoo.tree</field>
+        <field name="model">aula.odoo</field>
+        <field name="arch" type="xml">
+            <tree string="Aulas">
+                <field name="nome_aula" />
+                <field name="descricao_aula" />
+                <field name="minutos_aula" />
+                <field name="data_aula" />
+                <field name="professor" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="aula_form" model="ir.ui.view">
+        <field name="name">aula.odoo.form</field>
+        <field name="model">aula.odoo</field>
+        <field name="arch" type="xml">
+            <form string="Aulas - Titulo do Formulario">
+                <sheet>
+                    <notebook>
+                        <page string="Titulo da Pagina (Aba 1)" name="nome_pagina1">
+                            <!-- Conteudo da Página -->
+                            <form string="Campos do primeiro grupo">
+                                <group>
+                                    <field name="nome_aula" />
+                                    <field name="descricao_aula" />
+                                    <field name="professor" />
+                                </group>
+                            </form>
+                        </page>
+                        <page string="Titulo da Pagina (Aba 2)" name="nome_pagina2">
+                            <!-- Conteudo da Página -->
+                            <form string="campos do segundo grupo">
+                                <group>
+                                    <field name="minutos_aula" />
+                                    <field name="data_aula" />
+                                    <field name="state" />
+                                </group>
+                            </form>
+                        </page>
+                    </notebook>
+                    <!-- Dentro do Sheet coloca-se os campos do Modelo -->
+
+                    <header> 
+                        <button name="mark_as_lost" string="Marcar como Perdida" type="object" class="btn-primary"/>
+                        <button name="mark_as_done" string="Marcar como Feita" type="object" class="btn-primary"/>
+                        <!-- <field name="campo_status" widget="statusbar" readonly="1"/> -->
+                    </header>
+                </sheet>
+                <!-- <footer>
+                    <button name="mark_as_lost" string="Marcar como Perdida" type="object" class="btn-primary"/>
+                </footer> -->   
+            </form>
+        </field>
+
+        
+    </record>
+    <record id="action_aula" model="ir.actions.act_window">
+        <field name="res_model">aula.odoo</field>
+        <field name="view_mode">tree,form,pivot</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Adicionar Aula
+            </p>
+        </field>
+    </record>
+    <!-- Top menu item -->
+    <menuitem id="aula_root" name="Aulas" action="action_aula" sequence="1" />
+    <menuitem id="menu_aula" name="Aulas" sequence="2" />
+</odoo>

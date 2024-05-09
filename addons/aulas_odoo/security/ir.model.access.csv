@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_aula_odoo,access.aula.odoo,model_aula_odoo,,1,1,1,1
+access_cadastro_professor,access.cadastro.professor,model_cadastro_professor,,1,1,1,1
+
